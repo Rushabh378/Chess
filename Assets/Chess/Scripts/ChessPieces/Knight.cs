@@ -7,12 +7,14 @@ namespace Assets.Chess.Scripts.ChessPieces
     {
         protected override void HighLightMoves()
         {
-            throw new System.NotImplementedException();
+            base.HighLightMoves();
+
+            HighLight.Knight(Tile);
         }
 
         public void OnMouseLeftClick()
         {
-            throw new System.NotImplementedException();
+            HighLightMoves();
         }
     }
 }

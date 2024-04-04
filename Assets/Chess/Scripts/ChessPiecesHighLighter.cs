@@ -134,10 +134,10 @@ namespace Assets.Chess.Scripts
             }
         }
 
-        internal void Pawn(Tiles tile)
+        internal void Pawn(Tiles position)
         {
-            int i = tile.Row;
-            int j = tile.Column;
+            int i = position.Row;
+            int j = position.Column;
 
             if (Tiles.IsOccupied(i + 1, j) != true)
             {
@@ -149,11 +149,12 @@ namespace Assets.Chess.Scripts
             }
         }
 
-        internal void King(Tiles tile)
+        internal void King(Tiles position)
         {
-            int i = tile.Row;
-            int j = tile.Column;
+            int i = position.Row;
+            int j = position.Column;
 
+            // HighLight in plus (+)
             if (Tiles.IsOccupied(i + 1, j) != true)
                 ChessBoardPlacementHandler.Instance.Highlight(i + 1, j);
             if (Tiles.IsOccupied(i, j + 1) != true)
@@ -163,6 +164,7 @@ namespace Assets.Chess.Scripts
             if (Tiles.IsOccupied(i, j - 1) != true)
                 ChessBoardPlacementHandler.Instance.Highlight(i, j - 1);
 
+            // HighLigh in axe (x)
             if (Tiles.IsOccupied(i + 1, j + 1) != true)
                 ChessBoardPlacementHandler.Instance.Highlight(i + 1, j + 1);
             if (Tiles.IsOccupied(i - 1, j - 1) != true)
@@ -171,6 +173,37 @@ namespace Assets.Chess.Scripts
                 ChessBoardPlacementHandler.Instance.Highlight(i + 1, j - 1);
             if (Tiles.IsOccupied(i - 1, j + 1) != true)
                 ChessBoardPlacementHandler.Instance.Highlight(i - 1, j + 1);
+        }
+
+        internal void Knight(Tiles position)
+        {
+            int i = position.Row;
+            int j = position.Column;
+
+            //HighLight Upperword T
+            if (Tiles.IsOccupied(i + 2, j - 1) != true)
+                ChessBoardPlacementHandler.Instance.Highlight(i + 2, j - 1);
+            if (Tiles.IsOccupied(i + 2, j + 1) != true)
+                ChessBoardPlacementHandler.Instance.Highlight(i + 2, j + 1);
+
+            //HighLight Downward T
+            if (Tiles.IsOccupied(i - 2, j - 1) != true)
+                ChessBoardPlacementHandler.Instance.Highlight(i - 2, j - 1);
+            if (Tiles.IsOccupied(i - 2, j + 1) != true)
+                ChessBoardPlacementHandler.Instance.Highlight(i - 2, j + 1);
+
+            //HighLight Leftward T
+            if (Tiles.IsOccupied(i + 1, j - 2) != true)
+                ChessBoardPlacementHandler.Instance.Highlight(i + 1, j - 2);
+            if (Tiles.IsOccupied(i - 1, j - 2) != true)
+                ChessBoardPlacementHandler.Instance.Highlight(i - 1, j - 2);
+
+            //HighLight Rightward T
+            if (Tiles.IsOccupied(i - 1, j + 2) != true)
+                ChessBoardPlacementHandler.Instance.Highlight(i - 1, j + 2);
+            if (Tiles.IsOccupied(i + 1, j + 2) != true)
+                ChessBoardPlacementHandler.Instance.Highlight(i + 1, j + 2);
+
         }
     }
 }
