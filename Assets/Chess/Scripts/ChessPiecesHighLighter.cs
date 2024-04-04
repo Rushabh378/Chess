@@ -139,11 +139,11 @@ namespace Assets.Chess.Scripts
             int i = tile.Row;
             int j = tile.Column;
 
-            if (Tiles.isValid(i + 1, j))
+            if (Tiles.IsOccupied(i + 1, j) != true)
             {
                 ChessBoardPlacementHandler.Instance.Highlight(i + 1, j);
             }
-            if (i == 1 && Tiles.isValid(i + 2, j)) //if pawn is at starting stage
+            if (i == 1 && Tiles.IsOccupied(i + 2, j) != true) //if pawn is at starting stage
             {
                 ChessBoardPlacementHandler.Instance.Highlight(i + 2, j);
             }
@@ -153,7 +153,24 @@ namespace Assets.Chess.Scripts
         {
             int i = tile.Row;
             int j = tile.Column;
-            //yet to impliment
+
+            if (Tiles.IsOccupied(i + 1, j) != true)
+                ChessBoardPlacementHandler.Instance.Highlight(i + 1, j);
+            if (Tiles.IsOccupied(i, j + 1) != true)
+                ChessBoardPlacementHandler.Instance.Highlight(i, j + 1);
+            if (Tiles.IsOccupied(i - 1, j) != true)
+                ChessBoardPlacementHandler.Instance.Highlight(i - 1, j);
+            if (Tiles.IsOccupied(i, j - 1) != true)
+                ChessBoardPlacementHandler.Instance.Highlight(i, j - 1);
+
+            if (Tiles.IsOccupied(i + 1, j + 1) != true)
+                ChessBoardPlacementHandler.Instance.Highlight(i + 1, j + 1);
+            if (Tiles.IsOccupied(i - 1, j - 1) != true)
+                ChessBoardPlacementHandler.Instance.Highlight(i - 1, j - 1);
+            if (Tiles.IsOccupied(i + 1, j - 1) != true)
+                ChessBoardPlacementHandler.Instance.Highlight(i + 1, j - 1);
+            if (Tiles.IsOccupied(i - 1, j + 1) != true)
+                ChessBoardPlacementHandler.Instance.Highlight(i - 1, j + 1);
         }
     }
 }

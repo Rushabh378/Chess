@@ -25,7 +25,7 @@ namespace Assets.Chess.Scripts
         public static bool IsOccupied(int row, int column)
         {
             if (!isValid(row, column))
-                return false;
+                return true;
 
             return (_tiles[row, column]);
         }
