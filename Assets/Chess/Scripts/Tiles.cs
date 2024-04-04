@@ -17,8 +17,16 @@ namespace Assets.Chess.Scripts
             Occupie(Row, Column);
         }
 
+        public static bool isValid(int row, int column)
+        {
+            return (row < MAX && row >= 0 && column < MAX && column >= 0);
+        }
+
         public static bool IsOccupied(int row, int column)
         {
+            if (!isValid(row, column))
+                return false;
+
             return (_tiles[row, column]);
         }
 

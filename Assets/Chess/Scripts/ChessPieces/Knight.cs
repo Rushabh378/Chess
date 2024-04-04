@@ -5,7 +5,7 @@ namespace Assets.Chess.Scripts.ChessPieces
 {
     public class Knight : ChessPiecesBehaviour, IInteractable
     {
-        public override void HighLightMoves()
+        protected override void HighLightMoves()
         {
             throw new System.NotImplementedException();
         }

@@ -5,14 +5,17 @@ namespace Assets.Chess.Scripts.ChessPieces
 {
     public class Bishop : ChessPiecesBehaviour, IInteractable
     {
-        public override void HighLightMoves()
+        protected override void HighLightMoves()
         {
-            throw new System.NotImplementedException();
+            base.HighLightMoves();
+
+            HighLight.LeftToRightDiagonal(Tile);
+            HighLight.RightToLeftDiagonal(Tile);
         }
 
         public void OnMouseLeftClick()
         {
-            throw new System.NotImplementedException();
+            HighLightMoves();
         }
     }
 }

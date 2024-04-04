@@ -8,16 +8,19 @@ namespace Assets.Chess.Scripts.ChessPieces
     [RequireComponent(typeof(BoxCollider2D))]
     public abstract class ChessPiecesBehaviour : MonoBehaviour
     {
-        internal ChessPlayerPlacementHandler PiecePos;
+        private ChessPlayerPlacementHandler _piecePos;
         internal Tiles Tile;
-        internal TilesHighLighter HighLighter = new TilesHighLighter();
+        internal ChessPiecesHighLighter HighLight = new ChessPiecesHighLighter();
 
         private void Start()
         {
-            PiecePos = gameObject.GetComponent<ChessPlayerPlacementHandler>();
-            Tile = new Tiles(PiecePos.row, PiecePos.column);
+            _piecePos = gameObject.GetComponent<ChessPlayerPlacementHandler>();
+            Tile = new Tiles(_piecePos.row, _piecePos.column);
         }
 
-        public abstract void HighLightMoves();
+        protected virtual void HighLightMoves()
+        {
+            HighLight.Clear(); //clearing past HighLights if any before HighLightning;
+        }
     }
 }

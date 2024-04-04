@@ -5,10 +5,12 @@ namespace Assets.Chess.Scripts.ChessPieces
 {
     public class Rook : ChessPiecesBehaviour, IInteractable
     {
-        public override void HighLightMoves()
+        protected override void HighLightMoves()
         {
-            HighLighter.HorizontalHighLight(Tile);
-            HighLighter.VerticalHighLight(Tile);
+            base.HighLightMoves();
+
+            HighLight.Horizontal(Tile);
+            HighLight.Vertical(Tile);
         }
 
         public void OnMouseLeftClick()

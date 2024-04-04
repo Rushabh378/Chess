@@ -5,14 +5,19 @@ namespace Assets.Chess.Scripts.ChessPieces
 {
     public class Queen : ChessPiecesBehaviour, IInteractable
     {
-        public override void HighLightMoves()
+        protected override void HighLightMoves()
         {
-            throw new System.NotImplementedException();
+            base.HighLightMoves();
+
+            HighLight.Vertical(Tile);
+            HighLight.Horizontal(Tile);
+            HighLight.RightToLeftDiagonal(Tile);
+            HighLight.LeftToRightDiagonal(Tile);
         }
 
         public void OnMouseLeftClick()
         {
-            throw new System.NotImplementedException();
+            HighLightMoves();
         }
     }
 }
