@@ -1,21 +1,12 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using Assets.Chess.Scripts.Interfaces;
 
 namespace Assets.Chess.Scripts.ChessPieces
 {
-    public class Pawn : ChessPiecesBehaviour, IInteractable
+    public class Pawn : ChessPiecesBehaviour, IClickable
     {
-        
-        protected override void HighLightMoves()
-        {
-            base.HighLightMoves();
-
-            HighLight.Pawn(Tile);
-        }
-
         public void OnMouseLeftClick()
         {
-            HighLightMoves();
+            HighLight.Pawn(Position);
         }
     }
 }

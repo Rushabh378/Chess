@@ -1,20 +1,12 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using Assets.Chess.Scripts.Interfaces;
 
 namespace Assets.Chess.Scripts.ChessPieces
 {
-    public class Knight : ChessPiecesBehaviour, IInteractable
+    public class Knight : ChessPiecesBehaviour, IClickable
     {
-        protected override void HighLightMoves()
-        {
-            base.HighLightMoves();
-
-            HighLight.Knight(Tile);
-        }
-
         public void OnMouseLeftClick()
         {
-            HighLightMoves();
+            HighLight.Knight(Position);
         }
     }
 }

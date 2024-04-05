@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using Chess.Scripts.Core;
+using Assets.Chess.Scripts.Utilities;
 
 namespace Assets.Chess.Scripts.ChessPieces
 {
@@ -9,18 +9,13 @@ namespace Assets.Chess.Scripts.ChessPieces
     public abstract class ChessPiecesBehaviour : MonoBehaviour
     {
         private ChessPlayerPlacementHandler _piecePos;
-        internal Tiles Tile;
-        internal ChessPiecesHighLighter HighLight = new ChessPiecesHighLighter();
+        protected Tiles Position;
+        protected ChessPiecesHighLighter HighLight = new ChessPiecesHighLighter();
 
         private void Start()
         {
             _piecePos = gameObject.GetComponent<ChessPlayerPlacementHandler>();
-            Tile = new Tiles(_piecePos.row, _piecePos.column);
-        }
-
-        protected virtual void HighLightMoves()
-        {
-            HighLight.Clear(); //clearing past HighLights if any before HighLightning;
+            Position = new Tiles(_piecePos.row, _piecePos.column);
         }
     }
 }

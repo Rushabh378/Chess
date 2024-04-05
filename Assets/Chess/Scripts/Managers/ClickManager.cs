@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
+using Assets.Chess.Scripts.Interfaces;
+using Assets.Chess.Scripts.Utilities;
 
-namespace Assets.Chess.Scripts
+namespace Assets.Chess.Scripts.Managers
+
 {
     public class ClickManager : GenericSingleton<ClickManager>
     {
@@ -13,10 +16,10 @@ namespace Assets.Chess.Scripts
 
                 if (hit.collider != null)
                 {
-                    IInteractable interactable = hit.collider.gameObject.GetComponent<IInteractable>();
-                    if (interactable != null)
+                    IClickable clickable = hit.collider.gameObject.GetComponent<IClickable>();
+                    if (clickable != null)
                     {
-                        interactable.OnMouseLeftClick();
+                        clickable.OnMouseLeftClick();
                     }
                 }
             }

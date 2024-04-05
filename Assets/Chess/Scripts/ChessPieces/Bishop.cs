@@ -1,21 +1,12 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using Assets.Chess.Scripts.Interfaces;
 
 namespace Assets.Chess.Scripts.ChessPieces
 {
-    public class Bishop : ChessPiecesBehaviour, IInteractable
+    public class Bishop : ChessPiecesBehaviour, IClickable
     {
-        protected override void HighLightMoves()
-        {
-            base.HighLightMoves();
-
-            HighLight.LeftToRightDiagonal(Tile);
-            HighLight.RightToLeftDiagonal(Tile);
-        }
-
         public void OnMouseLeftClick()
         {
-            HighLightMoves();
+            HighLight.Bishop(Position);
         }
     }
 }

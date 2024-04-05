@@ -1,7 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
-namespace Assets.Chess.Scripts
+namespace Assets.Chess.Scripts.Utilities
 {
     public class Tiles
     {
@@ -17,17 +18,22 @@ namespace Assets.Chess.Scripts
             Occupie(Row, Column);
         }
 
-        public static bool isValid(int row, int column)
+        public static bool IsValid(int row, int column)
         {
             return (row < MAX && row >= 0 && column < MAX && column >= 0);
         }
 
         public static bool IsOccupied(int row, int column)
         {
-            if (!isValid(row, column))
+            try
+            {
+                return (_tiles[row, column]);
+            }
+            catch(Exception)
+            {
+                Debug.LogWarning("in valid Row and column provided");
                 return true;
-
-            return (_tiles[row, column]);
+            }
         }
 
         public static void Occupie(int row, int column)
