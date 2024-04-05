@@ -26,169 +26,74 @@ namespace Assets.Chess.Scripts
                 }
             }
         }
-
-        internal void Bishop(Tiles position)
+        public void HighlightTiles(Tiles position, int[,] directions, bool singleStep = false)
         {
-            throw new NotImplementedException();
-        }
+            int row, col;
+            for (int i = 0; i < directions.GetLength(0); i++)
+            {
+                row = position.Row + directions[i, 0];
+                col = position.Column + directions[i, 1];
 
-        internal void Queen(Tiles position)
-        {
-            throw new NotImplementedException();
+                ChessBoardPlacementHandler.Instance.Highlight(row, col);
+            }
         }
 
         internal void Rook(Tiles position)
         {
-            throw new NotImplementedException();
-        }
+            ChessBoardPlacementHandler.Instance.ClearHighlights();
 
-        public void Vertical(Tiles position)
-        {
             HighlightTiles(position, new int[,]
             {
-                {1, 0}, //checking up
-                {-1, 0} //checking down
+                {1, 0}, {-1, 0},
+                {0, 1}, {0, -1}
             });
         }
 
-        public void Horizontal(Tiles position)
+        internal void Bishop(Tiles position)
         {
-            //checking right
-            for (int i = position.Column + 1; i < Tiles.MAX; i++)
-            {
-                if (Tiles.IsOccupied(position.Row, i))
-                {
-                    break;
-                }
-                else
-                {
-                    ChessBoardPlacementHandler.Instance.Highlight(position.Row, i);
-                }
-            }
+            ChessBoardPlacementHandler.Instance.ClearHighlights();
 
-            //checking left
-            for (int i = position.Column - 1; i >= 0; i--)
+            HighlightTiles(position, new int[,]
             {
-                if (Tiles.IsOccupied(position.Row, i))
-                {
-                    break;
-                }
-                else
-                {
-                    ChessBoardPlacementHandler.Instance.Highlight(position.Row, i);
-                }
-            }
+                {-1,-1}, {1, 1},
+                {1, -1}, {-1, 1}
+            });
         }
 
-        public void LeftToRightDiagonal(Tiles position)
+        internal void Queen(Tiles position)
         {
-            //checking up
-            int i = position.Row + 1;
-            int j = position.Column + 1;
+            ChessBoardPlacementHandler.Instance.ClearHighlights();
 
-            while (i < Tiles.MAX && j < Tiles.MAX)
-            {
-                if (Tiles.IsOccupied(i, j))
-                {
-                    break;
-                }
-
-                ChessBoardPlacementHandler.Instance.Highlight(i, j);
-                i++; j++;
-            }
-
-            //checking down
-            i = position.Row - 1;
-            j = position.Column - 1;
-
-            while (i >= 0 && j >= 0)
-            {
-                if (Tiles.IsOccupied(i, j))
-                {
-                    break;
-                }
-
-                ChessBoardPlacementHandler.Instance.Highlight(i, j);
-                i--; j--;
-            }
-        }
-
-        public void RightToLeftDiagonal(Tiles position)
-        {
-            //checking up
-            int i = position.Row + 1;
-            int j = position.Column - 1;
-
-            while (i < Tiles.MAX && j >= 0)
-            {
-                if (Tiles.IsOccupied(i, j))
-                {
-                    break;
-                }
-
-                ChessBoardPlacementHandler.Instance.Highlight(i, j);
-                i++; j--;
-            }
-
-            //checking down
-            i = position.Row - 1;
-            j = position.Column + 1;
-
-            while (i >= 0 && j <= Tiles.MAX)
-            {
-                if (Tiles.IsOccupied(i, j))
-                {
-                    break;
-                }
-
-                ChessBoardPlacementHandler.Instance.Highlight(i, j);
-                i--; j++;
-            }
+            Rook(position);
+            Bishop(position);
         }
 
         internal void Pawn(Tiles position)
         {
-            int i = position.Row;
-            int j = position.Column;
+            ChessBoardPlacementHandler.Instance.ClearHighlights();
 
-            if (Tiles.IsOccupied(i + 1, j) != true)
+            int forword = position.Row == 1 ? 2 : 1;
+            HighlightTiles(position, new int[,]
             {
-                ChessBoardPlacementHandler.Instance.Highlight(i + 1, j);
-            }
-            if (i == 1 && Tiles.IsOccupied(i + 2, j) != true) //if pawn is at starting stage
-            {
-                ChessBoardPlacementHandler.Instance.Highlight(i + 2, j);
-            }
+                {forword, 0}
+            }, true);
         }
 
         internal void King(Tiles position)
         {
-            int i = position.Row;
-            int j = position.Column;
+            ChessBoardPlacementHandler.Instance.ClearHighlights();
 
-            // HighLight in plus (+)
-            if (Tiles.IsOccupied(i + 1, j) != true)
-                ChessBoardPlacementHandler.Instance.Highlight(i + 1, j);
-            if (Tiles.IsOccupied(i, j + 1) != true)
-                ChessBoardPlacementHandler.Instance.Highlight(i, j + 1);
-            if (Tiles.IsOccupied(i - 1, j) != true)
-                ChessBoardPlacementHandler.Instance.Highlight(i - 1, j);
-            if (Tiles.IsOccupied(i, j - 1) != true)
-                ChessBoardPlacementHandler.Instance.Highlight(i, j - 1);
-
-            // HighLigh in axe (x)
-            if (Tiles.IsOccupied(i + 1, j + 1) != true)
-                ChessBoardPlacementHandler.Instance.Highlight(i + 1, j + 1);
-            if (Tiles.IsOccupied(i - 1, j - 1) != true)
-                ChessBoardPlacementHandler.Instance.Highlight(i - 1, j - 1);
-            if (Tiles.IsOccupied(i + 1, j - 1) != true)
-                ChessBoardPlacementHandler.Instance.Highlight(i + 1, j - 1);
-            if (Tiles.IsOccupied(i - 1, j + 1) != true)
-                ChessBoardPlacementHandler.Instance.Highlight(i - 1, j + 1);
+            HighlightTiles(position, new int[,]
+            {
+                {-1,-1}, {-1, 0}, {0, -1}, {1, 1},
+                {1, 0}, {0, 1},
+            }, true);
         }
 
         internal void Knight(Tiles position)
         {
+            ChessBoardPlacementHandler.Instance.ClearHighlights();
+
             int i = position.Row;
             int j = position.Column;
 
