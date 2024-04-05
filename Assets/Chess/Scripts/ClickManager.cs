@@ -13,10 +13,10 @@ namespace Assets.Chess.Scripts
 
                 if (hit.collider != null)
                 {
-                    IInteractable interactable = hit.collider.gameObject.GetComponent<IInteractable>();
-                    if (interactable != null)
+                    IClickable clickable = hit.collider.gameObject.GetComponent<IClickable>();
+                    if (clickable != null)
                     {
-                        interactable.OnMouseLeftClick();
+                        clickable.OnMouseLeftClick();
                     }
                 }
             }

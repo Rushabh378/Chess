@@ -3,19 +3,11 @@ using UnityEngine;
 
 namespace Assets.Chess.Scripts.ChessPieces
 {
-    public class Rook : ChessPiecesBehaviour, IInteractable
+    public class Rook : ChessPiecesBehaviour, IClickable
     {
-        protected override void HighLightMoves()
-        {
-            base.HighLightMoves();
-
-            HighLight.Horizontal(Tile);
-            HighLight.Vertical(Tile);
-        }
-
         public void OnMouseLeftClick()
         {
-            HighLightMoves();
+            HighLight.Rook(Position);
         }
     }
 }

@@ -27,6 +27,21 @@ namespace Assets.Chess.Scripts
             }
         }
 
+        internal void Bishop(Tiles position)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void Queen(Tiles position)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void Rook(Tiles position)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Vertical(Tiles position)
         {
             HighlightTiles(position, new int[,]
