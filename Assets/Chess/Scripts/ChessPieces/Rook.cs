@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using Assets.Chess.Scripts.Interfaces;
 
 namespace Assets.Chess.Scripts.ChessPieces
 {

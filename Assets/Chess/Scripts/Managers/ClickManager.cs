@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
+using Assets.Chess.Scripts.Interfaces;
+using Assets.Chess.Scripts.Utilities;
 
-namespace Assets.Chess.Scripts
+namespace Assets.Chess.Scripts.Managers
+
 {
     public class ClickManager : GenericSingleton<ClickManager>
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Chess.Scripts
+namespace Assets.Chess.Scripts.Utilities
 {
     public class GenericSingleton<T> : MonoBehaviour where T : GenericSingleton<T>
     {

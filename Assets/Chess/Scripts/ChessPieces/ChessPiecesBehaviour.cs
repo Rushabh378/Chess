@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using Chess.Scripts.Core;
+using Assets.Chess.Scripts.Utilities;
 
 namespace Assets.Chess.Scripts.ChessPieces
 {
