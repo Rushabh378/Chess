@@ -19,7 +19,7 @@ namespace Assets.Chess.Scripts.Utilities
                 }
             }
         }
-        public void HighlightTiles(Tiles position, int[,] directions, bool singleStep = false)
+        public void SingleStepHighlightTiles(Tiles position, int[,] directions)
         {
             int row, col;
             for (int i = 0; i < directions.GetLength(0); i++)
@@ -75,11 +75,11 @@ namespace Assets.Chess.Scripts.Utilities
 
             if(position.Row == 1)
             {
-                HighlightTiles(position, new int[,] { { 1, 0 }, { 2, 0 } }, true);
+                SingleStepHighlightTiles(position, new int[,] { { 1, 0 }, { 2, 0 } });
             }
             else
             {
-                HighlightTiles(position, new int[,] { { 1, 0 } }, true);
+                SingleStepHighlightTiles(position, new int[,] { { 1, 0 } });
             }
         }
 
@@ -87,22 +87,22 @@ namespace Assets.Chess.Scripts.Utilities
         {
             ChessBoardPlacementHandler.Instance.ClearHighlights();
 
-            HighlightTiles(position, new int[,]
+            SingleStepHighlightTiles(position, new int[,]
             {
                 {-1,-1}, {-1, 0}, {0, -1}, {1, 1},
                 {1, 0}, {0, 1}, {1, -1}, {-1, 1}
-            }, true);
+            });
         }
 
         internal void Knight(Tiles position)
         {
             ChessBoardPlacementHandler.Instance.ClearHighlights();
 
-            HighlightTiles(position, new int[,]
+            SingleStepHighlightTiles(position, new int[,]
             {
                 {2, -1}, {2, 1}, {-2, -1}, {-2, -1},
                 {-1, 2}, {1, 2}, {-1, -2}, {1, -2}
-            }, true);
+            });
         }
     }
 }
