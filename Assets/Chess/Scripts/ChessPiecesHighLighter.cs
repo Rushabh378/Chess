@@ -10,33 +10,30 @@ namespace Assets.Chess.Scripts
         {
             ChessBoardPlacementHandler.Instance.ClearHighlights();
         }
+
+        public void HighlightTiles(Tiles position, int[,] directions)
+        {
+            for(int i = 0; i < directions.GetLength(0); i++)
+            {
+                int row = position.Row + directions[i, 0];
+                int col = position.Column + directions[i, 1];
+
+                while (Tiles.IsValid(row, col) && !Tiles.IsOccupied(row, col))
+                {
+                    ChessBoardPlacementHandler.Instance.Highlight(row, col);
+                    row += directions[i, 0];
+                    col += directions[i, 1];
+                }
+            }
+        }
+
         public void Vertical(Tiles position)
         {
-            //checking up
-            for (int i = position.Row + 1; i < Tiles.MAX; i++)
+            HighlightTiles(position, new int[,]
             {
-                if (Tiles.IsOccupied(i, position.Column))
-                {
-                    break;
-                }
-                else
-                {
-                    ChessBoardPlacementHandler.Instance.Highlight(i, position.Column);
-                }
-            }
-
-            //checking down
-            for (int i = position.Row - 1; i >= 0; i--)
-            {
-                if (Tiles.IsOccupied(i, position.Column))
-                {
-                    break;
-                }
-                else
-                {
-                    ChessBoardPlacementHandler.Instance.Highlight(i, position.Column);
-                }
-            }
+                {1, 0}, //checking up
+                {-1, 0} //checking down
+            });
         }
 
         public void Horizontal(Tiles position)
